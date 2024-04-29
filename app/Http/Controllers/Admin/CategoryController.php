@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,7 +13,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.category.index');
+        $category = Category::select('id', 'name', 'image')->latest();
+
+        return view('pages.admin.category.index', compact(
+            'category'
+        ));
     }
 
     /**
@@ -28,7 +33,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            
+        ]);
     }
 
     /**
