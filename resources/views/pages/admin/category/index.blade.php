@@ -39,14 +39,17 @@
                             <th>{{ $loop->iteration }}</th>
                             <th>{{ $row->name }}</th>
                             <th>
-                                <img src="" alt="{{ $row->name }}" class="img-thumbnail">
+                                <img src="{{ url('storage/category/', $row->image) }}" alt="{{ $row->name }}" class="w-25">
                             </th>
                             <th>
-                                <button class="btn btn-warning">
+                                <button class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#editModalCategory{{ $row->id }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <form action="" method="post">
-                                    <button class="btn btn-danger">
+                                @include('pages.admin.category.modal-edit')
+                                <form action="{{ route('admin.category.destroy', $row->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
