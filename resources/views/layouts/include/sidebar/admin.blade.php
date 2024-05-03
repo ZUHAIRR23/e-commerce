@@ -23,8 +23,9 @@
                         <i class="bi bi-circle"></i><span>Category</span>
                     </a>
                 </li>
-                <li>
-                    <a href="components-alerts.html">
+                <li>    
+                    <a href="{{ route('admin.product.index') }}"
+                    class="{{ request()->routeIs('admin.product.index') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Product</span>
                     </a>
                 </li>
