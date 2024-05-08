@@ -39,7 +39,7 @@
                             <th>{{ $loop->iteration }}</th>
                             <th>{{ $row->name }}</th>
                             <th>
-                                <img src="{{ url('storage/category/', $row->image) }}" alt="{{ $row->name }}" class="w-25">
+                                <img src="{{ url('storage/category/', $row->image) }}" alt="{{ $row->name }}" class="img-thumbnail" width="100">
                             </th>
                             <th>
                                 <button class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#editModalCategory{{ $row->id }}">

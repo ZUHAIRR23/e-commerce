@@ -27,7 +27,9 @@
                     <label class="col-sm-2 col-form-label">Category</label>
                     <div class="col-12">
                         <select class="form-select" aria-label="Default select example" name="category_id">
-                            <option selected><==================></option>
+                            <option selected>
+                                <==================>
+                            </option>
                             @foreach ($category as $row)
                                 <option value="{{ $row->id }}">{{ $row->name }}</option>
                             @endforeach
@@ -43,8 +45,8 @@
                     <textarea class="form-control" aria-label="With textarea" id="productDescription" name="description">{{ old('description') }}</textarea>
                 </div>
                 <div class="mt-4">
-                    <a href="{{ route('admin.product.index') }}" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Cancel</a>
+                    <a href="{{ route('admin.product.index') }}" class="btn btn-secondary">
+                        </i>Cancel</a>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
 
