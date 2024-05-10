@@ -22,15 +22,10 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function(){
     Route::resource('/product.gallery', ProductGalleryController::class)->except(['create', 'show', 'edit', 'update']);
     Route::resource('/transaction', TransactionController::class);
     Route::resource('/my-transaction', MyTransactionController::class)->only(['index', 'show']);
-    Route::name('user.')->prefix('user')->group(function() {
-        Route::get('/index', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('index');
-        Route::put('reset-password/{id}', [\App\Http\Controllers\Admin\UserController::class, 'resetPassword'])->name('reset-password');
-    });
 });
 
 Route::get('/', [App\Http\Controllers\FrontEnd\FrontEndController::class]);
 
 Route::name('user.')->prefix('user')->middleware('user')->group(function(){
-    Route::get('/dashboard', [\App\Http\Controllers\User\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/my-transaction', MyTransactionController::class)->only(['index', 'show']);
 });
