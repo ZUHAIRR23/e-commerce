@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html class="no-js" lang="">
 
 <head>
@@ -13,15 +12,15 @@
     <meta property="og:image" content="" />
 
     <link rel="manifest" href="site.webmanifest" />
-    <link rel="apple-touch-icon" href="images/content/favicon.png" />
+    <link rel="apple-touch-icon" href="{{asset('frontend/images/content/favicon.png')}}" />
     <!-- Place favicon.ico in the root directory -->
 
     <link rel="stylesheet" href="./css/main.css" />
-    <link rel="icon" href="images/content/favicon.png" />
+    <link rel="icon" href="{{asset('frontend/images/content/favicon.png')}}" />
 
     <meta name="theme-color" content="#000" />
     <link rel="icon" href="favicon.ico">
-    <link href="css/app.minify.css" rel="stylesheet">
+    <link href="{{ asset('frontend/css/app.minify.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -32,7 +31,7 @@
         <div class="container mx-auto py-5">
             <div class="flex flex-stretch items-center">
                 <div class="w-56 items-center flex">
-                    <img src="images/content/logo.png" alt="Luxspace | Fulfill your house with beautiful furniture" />
+                    <img src="{{ asset('frontend/images/content/logo.png') }}" alt="Luxspace | Fulfill your house with beautiful furniture" />
                 </div>
                 <div class="w-full"></div>
                 <div class="w-auto">
@@ -116,19 +115,19 @@
                 <div class="overlay right-0 bottom-0 md:inset-0">
                     <button class="video hero-cta focus:outline-none z-30 modal-trigger"
                         data-content='<div class="w-screen pb-56 md:w-88 md:pb-56 relative z-50">
-            <div class="absolute w-full h-full">
+              <div class="absolute w-full h-full">
                 <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/3h0_v1cdUIA"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/3h0_v1cdUIA"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
                 ></iframe>
-                </div>
+              </div>
             </div>'></button>
                 </div>
-                <img src="images/content/image-section-1.png" alt="hero 1"
+                <img src="{{ asset('frontend/images/content/image-section-1.png') }}" alt="hero 1"
                     class="absolute inset-0 md:relative w-full h-full object-cover object-center" />
             </div>
         </div>
@@ -146,7 +145,7 @@
             <div class="grid grid-rows-2 grid-cols-9 gap-4">
                 <div class="relative col-span-9 row-span-1 md:col-span-4 card" style="height: 180px">
                     <div class="card-shadow rounded-xl">
-                        <img src="./images/content/image-catalog-1.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-catalog-1.png')}}" alt=""
                             class="w-full h-full object-cover object-center overlay overflow-hidden rounded-xl" />
                     </div>
                     <div class="overlay left-0 top-0 bottom-0 flex justify-center flex-col pl-48 md:pl-72">
@@ -159,7 +158,7 @@
                 </div>
                 <div class="relative col-span-9 row-span-1 md:col-span-2 md:row-span-2 card">
                     <div class="card-shadow rounded-xl">
-                        <img src="./images/content/image-catalog-3.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-catalog-3.png')}}" alt=""
                             class="w-full h-full object-cover object-center overlay overflow-hidden rounded-xl" />
                     </div>
                     <div
@@ -173,7 +172,7 @@
                 </div>
                 <div class="relative col-span-9 row-span-1 md:col-span-3 md:row-span-2 card">
                     <div class="card-shadow rounded-xl">
-                        <img src="./images/content/image-catalog-4.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-catalog-4.png')}}" alt=""
                             class="w-full h-full object-cover object-center overlay overflow-hidden rounded-xl" />
                     </div>
                     <div
@@ -187,7 +186,7 @@
                 </div>
                 <div class="relative col-span-9 row-span-1 md:col-span-4 card">
                     <div class="card-shadow rounded-xl">
-                        <img src="./images/content/image-catalog-2.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-catalog-2.png')}}" alt=""
                             class="w-full h-full object-cover object-center overlay overflow-hidden rounded-xl" />
                     </div>
                     <div class="overlay left-0 top-0 bottom-0 flex justify-center flex-col pl-48 md:pl-72">
@@ -231,7 +230,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <img src="./images/content/image-arrived-1.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-arrived-1.png')}}" alt=""
                             class="w-full h-full object-cover object-center" />
                     </div>
                     <h5 class="text-lg font-semibold mt-4">Cangkir Mauttie</h5>
@@ -257,7 +256,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <img src="./images/content/image-arrived-2.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-arrived-2.png')}}" alt=""
                             class="w-full h-full object-cover object-center" />
                     </div>
                     <h5 class="text-lg font-semibold mt-4">Bankyu Minimay</h5>
@@ -283,7 +282,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <img src="./images/content/image-arrived-3.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-arrived-3.png')}}" alt=""
                             class="w-full h-full object-cover object-center" />
                     </div>
                     <h5 class="text-lg font-semibold mt-4">Buku Sidu Edition</h5>
@@ -309,7 +308,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <img src="./images/content/image-arrived-4.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-arrived-4.png')}}" alt=""
                             class="w-full h-full object-cover object-center" />
                     </div>
                     <h5 class="text-lg font-semibold mt-4">Watch Notes X</h5>
@@ -335,7 +334,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <img src="./images/content/image-arrived-5.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-arrived-5.png')}}" alt=""
                             class="w-full h-full object-cover object-center" />
                     </div>
                     <h5 class="text-lg font-semibold mt-4">Racking Plants</h5>
@@ -361,7 +360,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <img src="./images/content/image-arrived-3.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-arrived-3.png')}}" alt=""
                             class="w-full h-full object-cover object-center" />
                     </div>
                     <h5 class="text-lg font-semibold mt-4">Racking Plants</h5>
@@ -387,7 +386,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <img src="./images/content/image-arrived-1.png" alt=""
+                        <img src="{{asset('frontend/images/content/image-arrived-1.png')}}" alt=""
                             class="w-full h-full object-cover object-center" />
                     </div>
                     <h5 class="text-lg font-semibold mt-4">Racking Plants</h5>
@@ -407,16 +406,16 @@
     <section class="container mx-auto">
         <div class="flex justify-center flex-wrap">
             <div class="w-full flex-auto md:w-auto md:flex-initial px-4 md:px-6 my-4 md:my-0">
-                <img src="./images/content/logo-adobe.svg" alt="" class="mx-auto" />
+                <img src="{{asset('frontend/images/content/logo-adobe.svg')}}" alt="" class="mx-auto" />
             </div>
             <div class="w-full flex-auto md:w-auto md:flex-initial px-4 md:px-6 my-4 md:my-0">
-                <img src="./images/content/logo-ikea.svg" alt="" class="mx-auto" />
+                <img src="{{asset('frontend/images/content/logo-ikea.svg')}}" alt="" class="mx-auto" />
             </div>
             <div class="w-full flex-auto md:w-auto md:flex-initial px-4 md:px-6 my-4 md:my-0">
-                <img src="./images/content/logo-hermanmiller.svg" alt="" class="mx-auto" />
+                <img src="{{asset('frontend/images/content/logo-hermanmiller.svg')}}" alt="" class="mx-auto" />
             </div>
             <div class="w-full flex-auto md:w-auto md:flex-initial px-4 md:px-6 my-4 md:my-0">
-                <img src="./images/content/logo-miele.svg" alt="" class="mx-auto" />
+                <img src="{{asset('frontend/images/content/logo-miele.svg')}}" alt="" class="mx-auto" />
             </div>
         </div>
     </section>
@@ -426,7 +425,7 @@
     <section class="">
         <div class="border-t border-b border-gray-200 py-12 mt-16 px-4">
             <div class="flex justify-center mb-8">
-                <img src="images/content/logo.png" alt="Luxspace | Fulfill your house with beautiful furniture" />
+                <img src="{{ asset('frontend/images/content/logo.png') }}" alt="Luxspace | Fulfill your house with beautiful furniture" />
             </div>
             <aside class="container mx-auto">
                 <div class="flex flex-wrap -mx-4 justify-center">
@@ -508,10 +507,10 @@
 
     <!-- START: LOAD SVG -->
     <!-- <svg width="23" height="26" class="hidden" id="icon-play">
-    <path
+      <path
         d="M21 9.536c2.667 1.54 2.667 5.39 0 6.928l-15 8.66c-2.667 1.54-6-.385-6-3.464V4.34C0 1.26 3.333-.664 6 .876l15 8.66z"
         fill="#fff"
-    />
+      />
     </svg> -->
     <!-- END: LOAD SVG  -->
 
@@ -528,7 +527,7 @@
         ga("send", "pageview");
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async></script>
-    <script src="js/app.js"></script>
+    <script src="{{ asset('frontend/js/app.js') }}"></script>
 </body>
 
 </html>

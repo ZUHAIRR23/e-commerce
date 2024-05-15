@@ -4,7 +4,6 @@
             <form action="{{ route('admin.product.gallery.store', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
-
                 <div class="modal-header">
                     <h5 class="modal-title">{{ $product->name }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
