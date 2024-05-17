@@ -1,5 +1,5 @@
 <!-- START: HEADER -->
-<header class="absolute w-full z-50 px-4">
+<header class="w-full z-50 px-4">
     <div class="container mx-auto py-5">
         <div class="flex flex-stretch items-center">
             <div class="w-56 items-center flex">
@@ -8,14 +8,13 @@
             </div>
             <div class="w-full"></div>
             <div class="w-auto">
-                <ul class="fixed bg-white inset-0 flex flex-col invisible items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center"
+                <ul class="fixed bg-white inset-0 z-0 flex flex-col invisible items-center justify-center opacity-0 md:visible md:flex-row md:bg-transparent md:relative md:opacity-100 md:flex md:items-center"
                     id="menu">
                     @foreach ($category as $item)
                         <li class="mx-3 py-6 md:py-0">
-                            <a href="{{ route('detail.category', $item->slug) }}" class="text-black md:text-white hover:underline">{{ $item->name }}</a>
+                            <a href="{{ route('detail.category', $item->slug) }}" class="text-black md:text-black hover:underline">{{ $item->name }}</a>
                         </li>
                     @endforeach
-
                 </ul>
             </div>
             <div class="w-auto">
@@ -37,17 +36,17 @@
                         @if (Auth::user()->role == 'admin')
                             <li class="mx-3 py-6 md:py-0">
                                 <a href="{{ route('admin.dashboard') }}"
-                                    class="text-black md:text-white hover:underline">Dashboard</a>
+                                    class="text-black hover:underline">Dashboard</a>
                             </li>
                         @else
                             <li class="mx-3 py-6 md:py-0">
                                 <a href="{{ route('user.dashboard') }}"
-                                    class="text-black md:text-white hover:underline">Dashboard</a>
+                                    class="text-black hover:underline">Dashboard</a>
                             </li>
                         @endif
                         <li class="ml-6">
                             <a id="header-cart"
-                                class="flex items-center justify-center w-8 h-8 text-black md:text-white"
+                                class="flex items-center justify-center w-8 h-8 text-black"
                                 href="cart.html">
                                 <svg class="fill-current" width="26" height="24" viewBox="0 0 26 24">
                                     <path
@@ -65,13 +64,12 @@
                         </li>
                     @else
                         <li class="mx-3 py-6 md:py-0">
-                            <a href="/login" class="text-black md:text-white hover:underline">Login</a>
+                            <a href="/login" class="text-black hover:underline">Login</a>
                         </li>
                         <li class="mx-3 py-6 md:py-0">
-                            <a href="/register" class="text-black md:text-white hover:underline">Register</a>
+                            <a href="/register" class="text-black hover:underline">Register</a>
                         </li>
                     @endif
-
                 </ul>
             </div>
         </div>
