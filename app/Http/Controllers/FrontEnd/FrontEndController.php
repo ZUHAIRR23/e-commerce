@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FrontEndController extends Controller
 {
@@ -46,5 +47,30 @@ class FrontEndController extends Controller
             'categories',
             'product'
         ));
+    }
+
+    public function cart()
+    {
+        $category = Category::select('id', 'name', 'slug')->latest()->get();
+        $cart = Cart::with('product')->where('user_id', auth()->user()->id)->get();
+
+        return view('pages.frontend.cart', compact(
+            'category',
+            'cart'
+        ));
+    }
+
+    public function addToCart(Request $request, $id)
+    {
+        try {
+            Cart::create([
+                'product_id' => $id,
+                'user_id' => auth()->user()->id
+            ]);
+            return redirect()->route('cart')->with('success', 'Berhasil Menambahkan Ke Cart');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi Kesalahan');
+        }
     }
 }
