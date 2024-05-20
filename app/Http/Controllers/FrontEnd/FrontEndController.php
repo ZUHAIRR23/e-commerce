@@ -52,7 +52,7 @@ class FrontEndController extends Controller
     public function cart()
     {
         $category = Category::select('id', 'name', 'slug')->latest()->get();
-        $cart = Cart::with('product')->where('user_id', auth()->user()->id)->get();
+        $cart = Cart::with('product')->where('user_id', auth()->user()->id)->latest()->get();
 
         return view('pages.frontend.cart', compact(
             'category',
@@ -69,6 +69,17 @@ class FrontEndController extends Controller
             ]);
             return redirect()->route('cart')->with('success', 'Berhasil Menambahkan Ke Cart');
 
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi Kesalahan');
+        }
+    }
+
+    public function deleteCart($id)
+    {
+        try {
+            Cart::findOrFail($id)->delete();
+
+            return redirect()->route('cart');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi Kesalahan');
         }

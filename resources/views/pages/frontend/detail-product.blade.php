@@ -41,7 +41,7 @@
                     </div>
                     <div class="preview">
                         <div class="item rounded-lg h-full overflow-hidden">
-                            <img src="{{ $product->product_galleries()->exists() ? url('storage/product/gallery', $product->product_galleries->first()->image) : '' }}"
+                            <img src="{{ $product->product_galleries()->exists() ? url('storage/product/gallery/', $product->product_galleries->first()->image) : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=' }}"
                                 alt="front" class="object-cover w-full h-full rounded-lg" />
                         </div>
                     </div>

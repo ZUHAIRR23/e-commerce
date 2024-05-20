@@ -55,8 +55,8 @@
                         <div class="flex flex-start flex-wrap items-center mb-4 -mx-4" data-row="1">
                             <div class="px-4 flex-none">
                                 <div class="" style="width: 90px; height: 90px">
-                                    <img src="{{ url('storage/product/gallery', $item->product->product_galleries) }}" alt="chair-1"
-                                        class="object-cover rounded-xl w-full h-full" />
+                                    <img src="{{ $item->product->product_galleries()->exists() ? url('storage/product/gallery', $item->product->product_galleries->first()->image) : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN88B8AAsUB4ZtvXtIAAAAASUVORK5CYII=' }}"
+                                        alt="{{ $item->product->name }}" class="object-cover rounded-xl w-full h-full" />
                                 </div>
                             </div>
                             <div class="px-4 w-auto flex-1 md:w-5/12">
@@ -77,10 +77,14 @@
                             </div>
                             <div class="px-4 w-2/12">
                                 <div class="text-center">
-                                    <button data-delete-item="1"
-                                        class="text-red-600 border-none focus:outline-none px-3 py-1">
-                                        X
-                                    </button>
+                                    <form action="{{ route('cart.delete', $item->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit"
+                                            class="text-red-600 border-none focus:outline-none px-3 py-1">
+                                            X
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -101,14 +105,14 @@
                                 <label for="complete-name" class="text-sm mb-2">Complete Name</label>
                                 <input data-input type="text" id="complete-name"
                                     class="border-gray-200 border rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
-                                    placeholder="Input your name" />
+                                    placeholder="Input your name" name="Name" />
                             </div>
 
                             <div class="flex flex-col mb-4">
                                 <label for="email" class="text-sm mb-2">Email Address</label>
                                 <input data-input type="email" id="email"
                                     class="border-gray-200 border rounded-lg px-4 py-2 bg-white text-sm focus:border-blue-200 focus:outline-none"
-                                    placeholder="Input your email address" />
+                                    placeholder="Input your email address" name="Address" />
                             </div>
 
                             <div class="flex flex-col mb-4">
