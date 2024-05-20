@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
+use App\Models\TransactionItem;
 
 class FrontEndController extends Controller
 {
@@ -16,7 +18,7 @@ class FrontEndController extends Controller
         $category = Category::select('id', 'name', 'slug')->latest()->get();
         $product = Product::with('product_galleries')->select('id', 'name', 'slug', 'price')->latest()->limit(8)->get();
 
-        
+
         return view('pages.frontend.index', compact(
             'category',
             'product'
@@ -68,7 +70,6 @@ class FrontEndController extends Controller
                 'user_id' => auth()->user()->id
             ]);
             return redirect()->route('cart')->with('success', 'Berhasil Menambahkan Ke Cart');
-
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi Kesalahan');
         }
@@ -82,6 +83,41 @@ class FrontEndController extends Controller
             return redirect()->route('cart');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi Kesalahan');
+        }
+    }
+
+    public function checkout(Request $request)
+    {
+        try {
+            $data = $request->all();
+
+            // get data cart
+            $cart = Cart::with('product')->where('user_id', auth()->user()->id->get);
+            // add to transaction
+            $data['user_id'] = auth()->user()->id;
+            $data['total_price'] = $cart->sum('product.price');
+            $data['status'] = 'PENDING';
+
+            // create transaction
+            $transaction = Transaction::create($data);
+
+            // add data to transaction item
+            foreach ($cart as $item) {
+                $item[] = TransactionItem::create([
+                    'transaction_id' => $transaction->id,
+                    'product_id' => $item->product_id,
+                    'user_id' => auth()->user()->id,
+                ]);
+            }
+
+            // delete cart
+            Cart::where('user_id', auth()->user()->id)->delete;
+
+            // Config Midtrans
+
+
+        } catch (\Exception $e) {
+            return redirect()->back();
         }
     }
 }
