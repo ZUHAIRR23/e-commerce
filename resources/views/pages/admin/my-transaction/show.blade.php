@@ -1,23 +1,45 @@
-<div class="modal fade" id="ExtralargeModal" tabindex="-1">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">My Transaction - <strong>{{ $row->name }}</strong></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <li class="list-group-item">Receiver Name: <strong>{{ $row->name }}</strong></li>
-                <li class="list-group-item">Phone: <strong>{{ $row->phone }}</strong></li>
-                <li class="list-group-item">Address: <strong>{{ $row->address }}</strong></li>
-                <li class="list-group-item">courier: <strong>{{ $row->courier }}</strong></li>
-                <li class="list-group-item">Payment: <strong>{{ $row->payment }}</strong></li>
-                <li class="list-group-item">Payment URL: <strong>{{ $row->payment_url }}</strong></li>
-                <li class="list-group-item">Status: <strong>{{ $row->status }}</strong></li>
-                <li class="list-group-item">Total Price: <strong>{{ $row->total_price }}</strong></li>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+@extends('layouts.parent')
+
+@section('title', 'My Transaction')
+
+@section('content')
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">My Transaction</h5>
+
+            <nav>
+                <ol class="breadcrumb">
+                    @if (Auth::user()->role == 'admin')
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    @else
+                        <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                    @endif
+                    <li class="breadcrumb-item"><a href="#">My Transaction</a></li>
+                    <li class="breadcrumb-item active">Transaction</li>
+                </ol>
+            </nav>
         </div>
     </div>
-</div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Detail Transaction</h5>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name Account</th>
+                        <th scope="col">Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Brandon Jacob</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endsection

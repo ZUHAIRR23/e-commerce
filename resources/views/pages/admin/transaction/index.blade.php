@@ -10,8 +10,13 @@
 
             <nav>
                 <ol class="breadcrumb">
+                    @if (Auth::user()->role == 'admin')
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    @else
+                        <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                    @endif
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">Transaction</a></li>
+                    <li class="breadcrumb-item"><a href="#">My Transaction</a></li>
                     <li class="breadcrumb-item active">Transaction</li>
                 </ol>
             </nav>
@@ -31,6 +36,7 @@
                         <td>Email</td>
                         <td>Phone</td>
                         <td>Total Price</td>
+                        <td>Payment URL</td>
                         <td>Status</td>
                         <td>Action</td>
                     </tr>
@@ -39,28 +45,35 @@
                     @forelse ($transaction as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ auth()->user()->name }}</td>
+                            <td>{{ $row->user->name }}</td>
                             <td>{{ $row->name }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->phone }}</td>
+                            <td>{{ $row->total_price }}</td>
                             <td>
-                                @if ($row->status == 'EXPIRED')
-                                    <span class="badge bg-danger">Expired</span>
-                                @elseif ($row->status == 'PENDING')
-                                    <span class="badge bg-warning">Pending</span>
-                                @elseif ($row->status == 'SETTLEMENT')
-                                    <span class="badge bg-info">Settlement</span>
+                                @if ($row->payment_url == 'null')
+                                    <span>NULL</span>
                                 @else
-                                    <span class="badge bg-success">Success</span>
+                                    <a href="{{ $row->payment_url }}">MIDTRANS</a>
                                 @endif
                             </td>
-                            <td>{{ $row->total_price }}</td>
+                            <td>
+                                @if ($row->status == 'EXPIRED')
+                                    <span class="badge bg-danger text-uppercase">Expired</span>
+                                @elseif ($row->status == 'PENDING')
+                                    <span class="badge bg-warning text-uppercase">Pending</span>
+                                @elseif ($row->status == 'SETTLEMENT')
+                                    <span class="badge bg-info text-uppercase">Settlement</span>
+                                @else
+                                    <span class="badge bg-success text-uppercase">Success</span>
+                                @endif
+                            </td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#ExtralargeModal">
                                     <i class="bi bi-eye"></i>
                                 </button>
-                                @include('pages.admin.my-transaction.show')
+                                @include('pages.admin.transaction.show')
                             </td>
                         </tr>
                     @empty
