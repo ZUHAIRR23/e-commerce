@@ -14,17 +14,18 @@ class TransactionController extends Controller
     public function index()
     {
         $transaction = Transaction::with('user')->select(
-            'id', 
-            'user_id', 
-            'name', 
-            'email', 
-            'phone', 
+            'id',
+            'user_id',
+            'name',
+            'slug',
+            'email',
+            'phone',
             'address',
             'total_price',
-            'status', 
-            'payment', 
+            'status',
+            'payment',
             'payment_url'
-            )->latest()->get();
+        )->latest()->get();
 
         return view('pages.admin.transaction.index', compact(
             'transaction'
@@ -68,7 +69,19 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // get data transaction by id
+        $transaction = Transaction::findOrFail($id);
+
+        try {
+            // update status transaction
+            $transaction->update([
+                'status' => $request->status
+            ]);
+
+            return redirect()->route('admin.transaction.index')->with('success', 'Berhasil');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.transaction.index')->with('error', 'Gagal');
+        }
     }
 
     /**
@@ -77,5 +90,10 @@ class TransactionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function showTransactionUserByAdminWithBySlugAndId($slug, $id)
+    {
+        $transaction = Transaction::where('slug', $slug)->where('id', $id)->first();
     }
 }

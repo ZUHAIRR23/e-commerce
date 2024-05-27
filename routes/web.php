@@ -40,4 +40,5 @@ Route::name('user.')->prefix('user')->middleware('user')->group(function () {
     Route::get('/updatePassword', [App\Http\Controllers\User\DashboardController::class, 'updatePassword'])->name('updatePassword');
     Route::resource('/my-transaction',MyTransactionController::class)->only(['index']);
     Route::put('/changePassword', [App\Http\Controllers\User\DashboardController::class, 'changePassword'])->name('changePassword');
+    Route::get('/my-transaction/{id}/{slug}', [MyTransactionController::class, 'showDataBySlugAndId'])->name('my-transaction.showDataBySlugAndId');
 });

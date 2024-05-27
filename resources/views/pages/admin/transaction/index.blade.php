@@ -15,8 +15,7 @@
                     @else
                         <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
                     @endif
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="#">My Transaction</a></li>
+                    <li class="breadcrumb-item"><a href="#">Transaction</a></li>
                     <li class="breadcrumb-item active">Transaction</li>
                 </ol>
             </nav>
@@ -69,11 +68,12 @@
                                 @endif
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#ExtralargeModal">
-                                    <i class="bi bi-eye"></i>
+                                <a href="#" class="btn btn-primary btn-sm mx-2">Show</a>
+                                <button type="button" class="btn btn-warning btn-sm m-2" data-bs-toggle="modal"
+                                    data-bs-target="#updateStatus{{ $row->id }}">
+                                    Edit
                                 </button>
-                                @include('pages.admin.transaction.show')
+                                @include('pages.admin.transaction.modal-edit')
                             </td>
                         </tr>
                     @empty
