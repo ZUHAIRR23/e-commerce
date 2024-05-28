@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProducGalleryController;
 use App\Http\Controllers\Admin\ProductController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +15,7 @@ Route::get('/detail-category/{slug}', [App\Http\Controllers\FrontEnd\FrontEndCon
 
 Auth::routes();
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::get('/cart', [App\Http\Controllers\FrontEnd\FrontEndController::class, 'cart'])->name('cart');
     Route::post('/cart/{id}', [App\Http\Controllers\FrontEnd\FrontEndController::class, 'addToCart'])->name('cart.add');
     Route::delete('/cart/{id}', [App\Http\Controllers\FrontEnd\FrontEndController::class, 'deleteCart'])->name('cart.delete');
@@ -31,14 +32,23 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/product', ProductController::class);
     Route::resource('/product.gallery', ProducGalleryController::class)->except(['create', 'show', 'edit', 'update']);
     Route::resource('/transaction', TransactionController::class);
-    Route::resource('/my-transaction',MyTransactionController::class)->only(['index']);
+    Route::resource('/my-transaction', MyTransactionController::class)->only(['index']);
     Route::get('/my-transaction/{id}/{slug}', [MyTransactionController::class, 'showDataBySlugAndId'])->name('my-transaction.showDataBySlugAndId');
+    Route::get('/transaction/{id}/{slug}', [TransactionController::class, 'showTransactionUserByAdminWithSlugAndId'])->name('transaction.showTransactionUserByAdminWithSlugAndId');
 });
 
 Route::name('user.')->prefix('user')->middleware('user')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/updatePassword', [App\Http\Controllers\User\DashboardController::class, 'updatePassword'])->name('updatePassword');
-    Route::resource('/my-transaction',MyTransactionController::class)->only(['index']);
+    Route::resource('/my-transaction', MyTransactionController::class)->only(['index']);
     Route::put('/changePassword', [App\Http\Controllers\User\DashboardController::class, 'changePassword'])->name('changePassword');
     Route::get('/my-transaction/{id}/{slug}', [MyTransactionController::class, 'showDataBySlugAndId'])->name('my-transaction.showDataBySlugAndId');
+});
+
+// Route::artisan call
+Route::get('/artisan-call', function () {
+    Artisan::call('storage:link'); // storage:link
+    Artisan::call('route:clear'); // route:clear
+    Artisan::call('config:clear'); // config:clear
+    return 'success';
 });

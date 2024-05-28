@@ -50,10 +50,11 @@
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->total_price }}</td>
                             <td>
-                                @if ($row->payment_url == 'null')
-                                    <span>NULL</span>
+                                @if ($row->payment_url)
+                                    <a href="{{ $row->payment_url }}" target="_blank"
+                                        class="btn btn-info d-flex justify-content-center">Payment</a>
                                 @else
-                                    <a href="{{ $row->payment_url }}">MIDTRANS</a>
+                                    N/A
                                 @endif
                             </td>
                             <td>
@@ -68,7 +69,8 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="#" class="btn btn-primary btn-sm mx-2">Show</a>
+                                <a href="{{ route('admin.transaction.showTransactionUserByAdminWithSlugAndId', [$row->slug, $row->id]) }}"
+                                    class="btn btn-primary btn-sm mx-2">Show</a>
                                 <button type="button" class="btn btn-warning btn-sm m-2" data-bs-toggle="modal"
                                     data-bs-target="#updateStatus{{ $row->id }}">
                                     Edit
